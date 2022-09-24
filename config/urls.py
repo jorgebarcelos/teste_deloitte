@@ -16,10 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from escola.urls import aluno_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('escola/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('escola/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('escola/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+
     path('token/', TokenObtainPairView.as_view()),
     path('token/refresh', TokenRefreshView.as_view()),
     path('escola/', include(aluno_urls))

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from escola.urls import aluno_urls
 
@@ -26,7 +26,8 @@ urlpatterns = [
     path('escola/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('escola/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 
-    path('token/', TokenObtainPairView.as_view()),
-    path('token/refresh', TokenRefreshView.as_view()),
+    path('escola/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('escola/token/refresh', TokenRefreshView.as_view(),  name='token_refresh'),
+    path('escola/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('escola/', include(aluno_urls))
 ]

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'drf_spectacular',
     'escola',
 ]
@@ -103,10 +104,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK= {
-    'DEFAULT_AUTHENTICATION':(
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION':[
+        'rest_framework_simplejwt.authentiction.JWTAuthentication',
+    ],
 }
 
 SPECTACULAR_SETTINGS = {

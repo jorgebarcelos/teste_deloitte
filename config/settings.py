@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -108,6 +109,10 @@ REST_FRAMEWORK= {
     'DEFAULT_AUTHENTICATION':[
         'rest_framework_simplejwt.authentiction.JWTAuthentication',
     ],
+}
+
+SIMPLE_JTW = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1)
 }
 
 SPECTACULAR_SETTINGS = {
